@@ -12,19 +12,19 @@ const permissions = shield({
     articlesConnection: or(isAdmin, isEditor),
 
     // Users
-    // user: or(isAdmin, isEditor),
-    // users: or(isAdmin, isEditor, isReader),
-    // usersConnection: or(isAdmin, isEditor),
+    user: or(isAdmin, isEditor),
+    users: or(isAdmin, isEditor, isReader),
+    usersConnection: or(isAdmin, isEditor),
 
     // Papers
-    // paper: or(isAdmin, isEditor),
-    // papers: or(isAdmin, isEditor),
-    // papersConnection: or(isAdmin, isEditor),
+    paper: or(isAdmin, isEditor),
+    papers: or(isAdmin, isEditor),
+    papersConnection: or(isAdmin, isEditor),
 
     // Categories
-    // category: or(isAdmin, isEditor),
-    // categories: or(isAdmin, isEditor),
-    // categoriesConnection: or(isAdmin, isEditor),
+    category: or(isAdmin, isEditor),
+    categories: or(isAdmin, isEditor),
+    categoriesConnection: or(isAdmin, isEditor),
 
     // FeedBacks
     feedBack: or(isAdmin, isEditor),
