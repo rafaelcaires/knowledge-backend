@@ -1,0 +1,19 @@
+{
+  "presets": ["@babel/preset-env"],
+  "plugins": [
+    ["inline-dotenv"],
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "graphql": "./src/graphql",
+          "utils": "./src/utils",
+          "config": "./src/config",
+          "validations": "./src/validations"
+        }
+      }
+    ],
+    ["@babel/transform-runtime"]
+  ]
+}

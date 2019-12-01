@@ -1,0 +1,216 @@
+type Paper {
+  id: ID!
+  title: PaperTitle!
+  description: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type AggregatePaper {
+  count: Int!
+}
+
+type PaperConnection {
+  pageInfo: PageInfo!
+  edges: [PaperEdge]!
+  aggregate: AggregatePaper!
+}
+
+input PaperCreateInput {
+  id: ID
+  title: PaperTitle!
+  description: String
+}
+
+input PaperCreateOneInput {
+  # create: PaperCreateInput
+  connect: PaperWhereUniqueInput
+}
+
+type PaperEdge {
+  node: Paper!
+  cursor: String!
+}
+
+enum PaperOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  description_ASC
+  description_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type PaperPreviousValues {
+  id: ID!
+  title: PaperTitle!
+  description: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type PaperSubscriptionPayload {
+  mutation: MutationType!
+  node: Paper
+  updatedFields: [String!]
+  previousValues: PaperPreviousValues
+}
+
+input PaperSubscriptionWhereInput {
+  AND: [PaperSubscriptionWhereInput!]
+  OR: [PaperSubscriptionWhereInput!]
+  NOT: [PaperSubscriptionWhereInput!]
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: PaperWhereInput
+}
+
+enum PaperTitle {
+  EDITOR
+  READER
+  ADMIN
+}
+
+input PaperUpdateDataInput {
+  title: PaperTitle
+  description: String
+}
+
+input PaperUpdateInput {
+  title: PaperTitle
+  description: String
+}
+
+input PaperUpdateManyMutationInput {
+  title: PaperTitle
+  description: String
+}
+
+input PaperUpdateOneRequiredInput {
+  create: PaperCreateInput
+  connect: PaperWhereUniqueInput
+  update: PaperUpdateDataInput
+  upsert: PaperUpsertNestedInput
+}
+
+input PaperUpsertNestedInput {
+  update: PaperUpdateDataInput!
+  create: PaperCreateInput!
+}
+
+input PaperWhereInput {
+  AND: [PaperWhereInput!]
+
+  OR: [PaperWhereInput!]
+
+  NOT: [PaperWhereInput!]
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: PaperTitle
+  title_not: PaperTitle
+  title_in: [PaperTitle!]
+  title_not_in: [PaperTitle!]
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+}
+
+input PaperWhereUniqueInput {
+  id: ID
+}
+
+type Query {
+  papers(
+    where: PaperWhereInput
+    orderBy: PaperOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Paper]!
+
+  paper(where: PaperWhereUniqueInput!): Paper
+
+  papersConnection(
+    where: PaperWhereInput
+    orderBy: PaperOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): PaperConnection!
+}
+
+union ValidatePaper = Paper | Validate | BatchPayload
+
+type Mutation {
+  createPaper(data: PaperCreateInput!): ValidatePaper!
+
+  updatePaper(data: PaperUpdateInput!, where: PaperWhereUniqueInput!): Paper
+
+  deletePaper(where: PaperWhereUniqueInput!): Paper
+
+  upsertPaper(
+    where: PaperWhereUniqueInput!
+    create: PaperCreateInput!
+    update: PaperUpdateInput!
+  ): ValidatePaper!
+
+  updateManyPapers(
+    data: PaperUpdateManyMutationInput!
+    where: PaperWhereInput
+  ): ValidatePaper!
+
+  deleteManyPapers(where: PaperWhereInput): ValidatePaper!
+}
+
+type Subscription {
+  paper(where: PaperSubscriptionWhereInput): BatchPayload
+}

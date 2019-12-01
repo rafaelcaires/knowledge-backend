@@ -1,0 +1,16 @@
+type Auth {
+  token: String!
+  user: User
+}
+
+input AuthInput {
+  email: String!
+  password: String!
+}
+
+union ValidateAuth = Auth | Validate
+
+type Mutation {
+  signin(data: AuthInput!): Auth!
+  signup(data: UserCreateInput): ValidateAuth!
+}

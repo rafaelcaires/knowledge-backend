@@ -1,0 +1,56 @@
+type Article {
+  id: ID! @id
+  title: String!
+  description: String
+  isPublished: Boolean! @default(value: false)
+  content: String!
+  user: User!
+  feedbacks: [FeedBack!]
+  category: Category!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Category {
+  id: ID! @id
+  title: String! 
+  description: String
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type User {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  password: String!
+  image: String
+  paper: Paper!
+  registration: String! @unique
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Paper {
+  id: ID! @id
+  title: PaperTitle! @default(value: READER) @unique
+  description: String 
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type FeedBack {
+  id: ID! @id
+  article: Article!
+  user: User!
+  isUseFul: Boolean! @default(value: false) 
+  comment: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+enum PaperTitle {
+  EDITOR,
+  READER,
+  ADMIN
+}
