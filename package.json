@@ -54,7 +54,7 @@
     "merge-graphql-schemas": "^1.7.0",
     "mkdirp": "^0.5.1",
     "prisma-binding": "^2.3.16",
-    "validator": "^12.1.0",
+    "validator": "^13.7.0",
     "yup": "^0.27.0"
   }
 }
